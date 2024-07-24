@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SingleFileInput from "./SingleFileInput";
 import {
   addNicheDesigns,
@@ -63,43 +63,45 @@ function EditNiche() {
                   style={{ height: "500px" }}
                   key={design.id}
                 >
-                  <div
-                    className="w-full cursor-pointer overflow-hidden"
-                    style={{ height: "90%" }}
-                  >
-                    <img
-                      src={design.image}
-                      alt=""
-                      className="w-full h-full object-contain duration-500 hover:scale-110"
-                    />
-                  </div>
-                  <div className="w-full flex" style={{ height: "10%" }}>
+                  <Link to={`/designs/${design.nicheId}`}>
                     <div
-                      style={{ borderRadius: "0 0 0 6px" }}
-                      className="w-full h-full relative flex justify-center items-center gap-2 text-white font-semibold text-lg bg-blue-500 hover:bg-blue-600"
+                      className="w-full cursor-pointer overflow-hidden"
+                      style={{ height: "90%" }}
                     >
-                      <input
-                        type="file"
-                        accept="image/png"
-                        className="w-full h-full cursor-pointer absolute top-0 left-0 opacity-0"
-                        onChange={(e) => updateDesign(design, e.target)}
+                      <img
+                        src={design.image}
+                        alt=""
+                        className="w-full h-full object-contain duration-500 hover:scale-110"
                       />
-                      <span>Change</span>
-                      <span>
-                        <FaArrowsRotate />
-                      </span>
                     </div>
-                    <button
-                      style={{ borderRadius: "0 0 6px 0" }}
-                      className="w-full h-full flex justify-center items-center gap-2 text-white font-semibold text-lg bg-red-500 hover:bg-red-600"
-                      onClick={() => deleteDesign(design)}
-                    >
-                      <span>Delete</span>
-                      <span>
-                        <FaRegTrashCan />
-                      </span>
-                    </button>
-                  </div>
+                    <div className="w-full flex" style={{ height: "10%" }}>
+                      <div
+                        style={{ borderRadius: "0 0 0 6px" }}
+                        className="w-full h-full relative flex justify-center items-center gap-2 text-white font-semibold text-lg bg-blue-500 hover:bg-blue-600"
+                      >
+                        <input
+                          type="file"
+                          accept="image/png"
+                          className="w-full h-full cursor-pointer absolute top-0 left-0 opacity-0"
+                          onChange={(e) => updateDesign(design, e.target)}
+                        />
+                        <span>Change</span>
+                        <span>
+                          <FaArrowsRotate />
+                        </span>
+                      </div>
+                      <button
+                        style={{ borderRadius: "0 0 6px 0" }}
+                        className="w-full h-full flex justify-center items-center gap-2 text-white font-semibold text-lg bg-red-500 hover:bg-red-600"
+                        onClick={() => deleteDesign(design)}
+                      >
+                        <span>Delete</span>
+                        <span>
+                          <FaRegTrashCan />
+                        </span>
+                      </button>
+                    </div>
+                  </Link>
                 </div>
               );
             })

@@ -224,7 +224,7 @@ export function designSituationAction(id, status) {
       updateDoc(designRef, {
         status: status,
       })
-        .then(() => alert("Design " + status + " Successfully"))
+        .then(() => {})
         .catch((err) => alert(err.message));
     }
   });
