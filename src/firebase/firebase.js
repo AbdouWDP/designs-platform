@@ -168,11 +168,12 @@ export function deleteDesign(design) {
 }
 
 // ==================== Update Design ====================
-export function updateDesign(id, file) {
-  const designRef = doc(database, "designs", id);
+export function updateDesign(design, file) {
+  const designRef = doc(database, "designs", design.id);
   if (file.files.length > 0) {
     const imageFile = file.files[0];
-    const imageRef = ref(storage, `designs-images/${imageFile.name + v4()}`);
+    const uuidImageName = imageFile.name + v4();
+    const imageRef = ref(storage, `designs-images/${uuidImageName}`);
     const uploadTask = uploadBytesResumable(imageRef, imageFile);
     uploadTask.on(
       "state_changed",
@@ -180,8 +181,15 @@ export function updateDesign(id, file) {
       (err) => alert(err.message),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          const imageRef = ref(storage, `designs-images/${design.image_name}`);
+          const designRef = doc(database, "designs", design.id);
           updateDoc(designRef, {
             image: url,
+            name: uuidImageName,
+          }).then(() => {
+            deleteObject(imageRef)
+              .then(() => {})
+              .catch((err) => console.log(err.message));
           });
         });
       }

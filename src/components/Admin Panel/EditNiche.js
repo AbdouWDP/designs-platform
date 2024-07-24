@@ -33,26 +33,28 @@ function EditNiche() {
 
   return (
     <>
-      <section className="w-3/4 m-auto my-8 max-lg:w-11/12">
-        <form
-          className="flex flex-col gap-2"
-          onSubmit={(e) => addNicheDesigns(e, niche)}
-        >
-          <p className="block font-semibold text-xl text-gray-900">
-            Upload Designs
-          </p>
-          <div className="upload-designs w-full h-fit max-lg:w-11/12 m-auto flex justify-between gap-2 max-md:flex-wrap">
-            {inputsJsx().map((input) => input)}
-          </div>
-          <button
-            type="submit"
-            className="text-blue-700 w-full max-lg:w-11/12 m-auto hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+      {nicheDesigns.length < 4 ? (
+        <section className="w-3/4 m-auto my-4 max-lg:w-11/12">
+          <form
+            className="flex flex-col gap-2"
+            onSubmit={(e) => addNicheDesigns(e, niche)}
           >
-            Submit
-          </button>
-        </form>
-      </section>
-      <section className="w-3/4 m-auto flex gap-2 flex-wrap mb-8 max-lg:w-11/12">
+            <p className="block font-semibold text-xl text-gray-900">
+              Upload Designs
+            </p>
+            <div className="upload-designs w-full h-fit max-lg:w-11/12 m-auto flex justify-between gap-2 max-md:flex-wrap">
+              {inputsJsx().map((input) => input)}
+            </div>
+            <button
+              type="submit"
+              className="text-blue-700 w-full max-lg:w-11/12 m-auto hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+            >
+              Submit
+            </button>
+          </form>
+        </section>
+      ) : null}
+      <section className="w-3/4 m-auto flex gap-2 flex-wrap my-4 max-lg:w-11/12">
         {nicheDesigns && nicheDesigns.length > 0
           ? nicheDesigns.map((design) => {
               return (
@@ -80,7 +82,7 @@ function EditNiche() {
                         type="file"
                         accept="image/png"
                         className="w-full h-full cursor-pointer absolute top-0 left-0 opacity-0"
-                        onChange={(e) => updateDesign(design.id, e.target)}
+                        onChange={(e) => updateDesign(design, e.target)}
                       />
                       <span>Change</span>
                       <span>
