@@ -185,7 +185,7 @@ export function updateDesign(design, file) {
           const designRef = doc(database, "designs", design.id);
           updateDoc(designRef, {
             image: url,
-            name: uuidImageName,
+            image_name: uuidImageName,
           }).then(() => {
             deleteObject(imageRef)
               .then(() => {})
