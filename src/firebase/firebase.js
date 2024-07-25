@@ -204,7 +204,7 @@ export function updateDesign(design, file) {
 export function searchNiche(nicheName, setNiche) {
   const q = query(
     nichesCol,
-    where("name", "==", nicheName),
+    where("name", "==", nicheName.toLowerCase()),
     orderBy("timestamp", "desc")
   );
   onSnapshot(q, (snapshot) => {
