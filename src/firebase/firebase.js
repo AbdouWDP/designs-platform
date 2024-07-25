@@ -242,7 +242,9 @@ export function addDesignComment(e, designId) {
       createdAt: new Date().toLocaleDateString(),
       timestamp: serverTimestamp(),
     })
-      .then(() => {})
+      .then(() => {
+        e.target.reset();
+      })
       .catch((err) => alert(err));
   } else {
     alert("Add Comment!");
