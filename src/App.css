@@ -38,6 +38,9 @@ body {
   .edit-niche-card {
     width: calc(35% - 8px);
   }
+  .single-half-container {
+    height: fit-content;
+  }
 }
 
 @media only screen and (max-width: 992px) {

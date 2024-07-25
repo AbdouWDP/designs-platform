@@ -32,15 +32,6 @@ function AddNiche() {
             required
           />
         </div>
-        {/* <p className="block text-base font-medium text-gray-900">
-          Upload Designs
-        </p> */}
-        {/* <div className="upload-designs w-full h-fit max-lg:w-11/12 m-auto flex justify-between gap-2 max-md:flex-wrap">
-          <SingleFileInput setImagesList={setImagesList} />
-          <SingleFileInput setImagesList={setImagesList} />
-          <SingleFileInput setImagesList={setImagesList} />
-          <SingleFileInput setImagesList={setImagesList} />
-        </div> */}
         <button
           type="submit"
           className="text-blue-700 w-full max-lg:w-11/12 m-auto hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"

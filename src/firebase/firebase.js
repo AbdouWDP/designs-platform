@@ -28,7 +28,7 @@ const storage = getStorage();
 // ==================== Designs Collection ====================
 const nichesCol = collection(database, "niches");
 const designsCol = collection(database, "designs");
-const CommentsCol = collection(database, "comments");
+const commentsCol = collection(database, "comments");
 
 //==================== Fetch All Niches ====================
 export function fetchNiches(setNiches) {
@@ -169,7 +169,6 @@ export function deleteDesign(design) {
 
 // ==================== Update Design ====================
 export function updateDesign(design, file) {
-  const designRef = doc(database, "designs", design.id);
   if (file.files.length > 0) {
     const imageFile = file.files[0];
     const uuidImageName = imageFile.name + v4();
@@ -230,5 +229,38 @@ export function designSituationAction(id, status) {
         .then(() => {})
         .catch((err) => alert(err.message));
     }
+  });
+}
+
+// ==================== Design Comment ====================
+export function addDesignComment(e, designId) {
+  e.preventDefault();
+  if (e.target.comment.value !== "") {
+    addDoc(commentsCol, {
+      comment: e.target.comment.value,
+      designId,
+      createdAt: new Date().toLocaleDateString(),
+      timestamp: serverTimestamp(),
+    })
+      .then(() => {})
+      .catch((err) => alert(err));
+  } else {
+    alert("Add Comment!");
+  }
+}
+
+// ==================== Design Comment ====================
+export function fetchDesignComments(designId, setDesignComment) {
+  const q = query(
+    commentsCol,
+    where("designId", "==", designId),
+    orderBy("timestamp", "desc")
+  );
+  onSnapshot(q, (snapshot) => {
+    let docs = [];
+    snapshot.docs.map((doc) => {
+      docs = [...docs, { ...doc.data(), id: doc.id }];
+    });
+    setDesignComment(docs);
   });
 }
