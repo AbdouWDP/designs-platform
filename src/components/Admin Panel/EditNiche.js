@@ -76,6 +76,16 @@ function EditNiche() {
                     </div>
                   </Link>
                   <div className="w-full flex" style={{ height: "10%" }}>
+                    <button
+                      style={{ borderRadius: "0 0 6px 0" }}
+                      className="w-full h-full flex justify-center items-center gap-2 text-white font-semibold text-lg bg-red-500 hover:bg-red-600"
+                      onClick={() => deleteDesign(design)}
+                    >
+                      <span>Delete</span>
+                      <span>
+                        <FaRegTrashCan />
+                      </span>
+                    </button>
                     <div
                       style={{ borderRadius: "0 0 0 6px" }}
                       className="w-full h-full relative flex justify-center items-center gap-2 text-white font-semibold text-lg bg-blue-500 hover:bg-blue-600"
@@ -91,16 +101,6 @@ function EditNiche() {
                         <FaArrowsRotate />
                       </span>
                     </div>
-                    <button
-                      style={{ borderRadius: "0 0 6px 0" }}
-                      className="w-full h-full flex justify-center items-center gap-2 text-white font-semibold text-lg bg-red-500 hover:bg-red-600"
-                      onClick={() => deleteDesign(design)}
-                    >
-                      <span>Delete</span>
-                      <span>
-                        <FaRegTrashCan />
-                      </span>
-                    </button>
                   </div>
                 </div>
               );
