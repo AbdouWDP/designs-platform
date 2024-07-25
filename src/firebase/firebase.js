@@ -181,12 +181,15 @@ export function updateDesign(design, file) {
       (err) => alert(err.message),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          const imageRef = ref(storage, `designs-images/${design.image_name}`);
           const designRef = doc(database, "designs", design.id);
           updateDoc(designRef, {
             image: url,
             image_name: uuidImageName,
           }).then(() => {
+            const imageRef = ref(
+              storage,
+              `designs-images/${design.image_name}`
+            );
             deleteObject(imageRef)
               .then(() => {})
               .catch((err) => console.log(err.message));
