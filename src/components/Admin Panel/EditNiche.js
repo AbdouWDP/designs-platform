@@ -62,7 +62,7 @@ function EditNiche() {
               <p className="block font-semibold text-xl text-gray-900">
                 Upload Designs
               </p>
-              <div className="upload-designs w-full h-fit max-lg:w-11/12 m-auto flex justify-between gap-2 max-md:flex-wrap">
+              <div className="upload-designs w-full h-fit max-lg:w-11/12 m-auto flex gap-2 max-md:flex-wrap">
                 {inputsJsx().map((input) => input)}
               </div>
               <button

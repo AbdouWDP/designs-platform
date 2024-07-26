@@ -9,6 +9,7 @@ import {
   uploadBytesResumable,
   deleteObject,
 } from "firebase/storage";
+import { getMessaging, getToken } from "firebase/messaging";
 import { v4 } from "uuid";
 
 const firebaseConfig = {
