@@ -82,6 +82,7 @@ function EditNiche() {
                     design={design}
                     setDesignComment={setDesignComment}
                     setSeeComment={setSeeComment}
+                    designComment={designComment}
                   />
                 );
               })

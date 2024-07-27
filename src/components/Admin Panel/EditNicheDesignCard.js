@@ -7,7 +7,12 @@ import {
 } from "../../firebase/firebase";
 import { FaRegTrashCan, FaArrowsRotate } from "react-icons/fa6";
 
-function EditNicheDesignCard({ design, setSeeComment, setDesignComment }) {
+function EditNicheDesignCard({
+  design,
+  setSeeComment,
+  setDesignComment,
+  designComment,
+}) {
   const [commentsLength, setCommentsLength] = useState([]);
 
   useEffect(() => {

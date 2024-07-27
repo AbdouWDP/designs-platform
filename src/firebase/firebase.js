@@ -135,17 +135,40 @@ export function deleteNiche(id) {
   if (conf) {
     const nicheRef = doc(database, "niches", id);
     let nicheDesigns = [];
+    // Get Niche Designs
     const designsQuery = query(designsCol, where("nicheId", "==", id));
     onSnapshot(designsQuery, (snapshot) => {
       snapshot.docs.forEach((doc) => {
         nicheDesigns = [...nicheDesigns, { ...doc.data(), id: doc.id }];
       });
+      // Start Deleting Niche Designs
       nicheDesigns.forEach((design) => {
+        // Get Design Comments
+        const commentsQuery = query(
+          commentsCol,
+          where("designId", "==", design.id)
+        );
+        let comments = [];
+        onSnapshot(commentsQuery, (snapshot) => {
+          let docs = [];
+          snapshot.docs.map((doc) => {
+            docs = [...docs, { ...doc.data(), id: doc.id }];
+          });
+          comments = docs;
+        });
+        // Delete Images from Storage
         const imageRef = ref(storage, `designs-images/${design.image_name}`);
         deleteObject(imageRef)
           .then(() => {
             const designRef = doc(database, "designs", design.id);
-            deleteDoc(designRef).then(() => {});
+            deleteDoc(designRef)
+              .then(() => {
+                // Delete Comments
+                comments.forEach((comment) => {
+                  deleteComment(comment.id);
+                });
+              })
+              .catch((err) => alert(err.message));
           })
           .catch((err) => console.log(err.message));
       });
@@ -159,10 +182,27 @@ export function deleteDesign(design) {
   const conf = window.confirm("Are you sure you want to delete this design?");
   if (conf) {
     const imageRef = ref(storage, `designs-images/${design.image_name}`);
+
+    const commentsQuery = query(
+      commentsCol,
+      where("designId", "==", design.id)
+    );
+    let comments = [];
+    onSnapshot(commentsQuery, (snapshot) => {
+      let docs = [];
+      snapshot.docs.map((doc) => {
+        docs = [...docs, { ...doc.data(), id: doc.id }];
+      });
+      comments = docs;
+    });
+
     deleteObject(imageRef)
       .then(() => {
         const designRef = doc(database, "designs", design.id);
         deleteDoc(designRef).then(() => alert("Design Deleted Successfully"));
+        comments.forEach((comment) => {
+          deleteComment(comment.id);
+        });
       })
       .catch((err) => console.log(err.message));
   }
@@ -233,7 +273,7 @@ export function designSituationAction(id, status) {
   });
 }
 
-// ==================== Design Comment ====================
+// ==================== Add Design Comment ====================
 export function addDesignComment(e, designId) {
   e.preventDefault();
   if (e.target.comment.value !== "") {
@@ -252,7 +292,7 @@ export function addDesignComment(e, designId) {
   }
 }
 
-// ==================== Design Comment ====================
+// ==================== Fetch Design Comment ====================
 export function fetchDesignComments(designId, setDesignComment) {
   const q = query(
     commentsCol,
@@ -266,4 +306,12 @@ export function fetchDesignComments(designId, setDesignComment) {
     });
     setDesignComment(docs);
   });
+}
+
+// ==================== Delete Comment ====================
+export function deleteComment(id) {
+  const commentRef = doc(database, "comments", id);
+  deleteDoc(commentRef)
+    .then(() => {})
+    .catch((err) => alert(err.message));
 }
