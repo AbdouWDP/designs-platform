@@ -7,13 +7,22 @@ function NicheCard({ niche }) {
 
   useEffect(() => {
     fetchNicheDesings(niche.id, setNicheDesigns);
-  }, []);
+  }, [niche]);
+
+  const approvedDesigns = nicheDesigns.filter(
+    (design) => design.status === "approved"
+  );
 
   return (
     <div
       key={niche.id}
-      className="niche-card h-96 bg-white overflow-hidden rounded-md"
+      className="niche-card h-96 bg-white overflow-hidden rounded-md relative"
     >
+      {approvedDesigns.length > 0 && approvedDesigns.length < 4 ? (
+        <div className="niche-alert w-6 h-6 bg-red-500 flex justify-center items-center absolute top-0 right-0 z-50 rounded-full text-white text-xl font-bold">
+          <p>!</p>
+        </div>
+      ) : null}
       <Link to={`/designs/${niche.id}`}>
         <img
           src={nicheDesigns.length > 0 && nicheDesigns[0].image}
