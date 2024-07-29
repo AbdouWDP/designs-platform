@@ -39,7 +39,7 @@ function SingleDesignHalf({ nicheDesigns, setBgColor, imgIndex }) {
           ></textarea>
           <button
             type="submit"
-            className="w-full h-2/5 max-lg:w-11/12 m-auto hover:text-white bg-blue-500 hover:bg-blue-700 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center  dark:focus:ring-blue-800"
+            className="w-full h-2/5 m-auto hover:text-white bg-blue-500 hover:bg-blue-700 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
           >
             Submit
           </button>
