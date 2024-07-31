@@ -63,7 +63,7 @@ function DesignRow({ niche, index }) {
 
 function DesignsTable({ niches }) {
   return (
-    <table className="designs-table w-full">
+    <table className="designs-table w-full my-4">
       <thead className="w-full">
         <tr>
           <th className="w-1/6 text-start">Id</th>

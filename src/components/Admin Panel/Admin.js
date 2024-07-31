@@ -6,7 +6,6 @@ import {
 } from "../../firebase/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { GoPlusCircle } from "react-icons/go";
-import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import DesignsSituation from "./DesignsSituation";
 import DesignsTable from "./DesignsTable";
 import { IoIosSearch } from "react-icons/io";
@@ -65,22 +64,6 @@ function Admin() {
                 <IoIosSearch />
               </span>
             </div>
-            {niches.length > 6 ? (
-              <div className="flex justify-end">
-                <div className="page-changer flex gap-4">
-                  <button className="prev-page-button w-14 h-8 rounded-sm text-white flex justify-center items-center bg-blue-500 text-3xl cursor-pointer duration-150 hover:bg-blue-600">
-                    <span>
-                      <FaCaretLeft />
-                    </span>
-                  </button>
-                  <button className="naxt-page-button w-14 h-8 rounded-sm text-white flex justify-center items-center bg-blue-500 text-3xl cursor-pointer duration-150 hover:bg-blue-600">
-                    <span>
-                      <FaCaretRight />
-                    </span>
-                  </button>
-                </div>
-              </div>
-            ) : null}
             <DesignsTable niches={niches} />
           </div>
         </div>
