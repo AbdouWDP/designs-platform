@@ -21,7 +21,7 @@ function EditNicheDesignCard({
 
   return (
     <div
-      className="edit-niche-card bg-white rounded-md"
+      className="edit-niche-card bg-black rounded-md"
       style={{ height: "500px" }}
       key={design.id}
     >

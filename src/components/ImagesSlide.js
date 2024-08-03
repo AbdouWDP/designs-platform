@@ -2,7 +2,7 @@ function ImagesSlide({ design, index, setImgIndex }) {
   return (
     <div
       key={design.id}
-      className="single-image-slide h-full bg-white overflow-hidden rounded-sm relative shrink-0 max-lg:w-2/5"
+      className="single-image-slide h-full bg-black overflow-hidden rounded-sm relative shrink-0 max-lg:w-2/5"
       onClick={() => setImgIndex(index)}
     >
       <img
